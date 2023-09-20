@@ -31,4 +31,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('employeesAll', [EmployeeController::class, 'employeesAll']);
     Route::get('employeesByDepartement', [EmployeeController::class, 'employeesByDepartement']);
     Route::get('auth/logout', [AuthController::class, 'logout']);
+    //Route::show('auth/show', [AuthController::class, 'show']);
 });

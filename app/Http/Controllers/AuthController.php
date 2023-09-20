@@ -23,23 +23,17 @@ class AuthController extends Controller
             ], 400);
         }
 
-        try{
-            $user = User::create([
-                'name'=>$request->name,
-                'email'=>$request->email,
-                'password'=> Hash::make($request->password)
-            ]);
-            return response()->json([
-                'status'=> true,
-                'message'=> "User registered successfully",
-                'token' => $user->createToken('API TOKEN')->plainTextToken
-            ], 200);
-        } catch (customException $e) {
-            return response()->json([
-                'status'=> false,
-                'errors'=> $e->errorMessage()
-            ], 400);
-        }
+        $user = User::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=> Hash::make($request->password)
+        ]);
+        return response()->json([
+            'status'=> true,
+            'message'=> "User registered successfully",
+            'token' => $user->createToken('API TOKEN')->plainTextToken
+        ], 200);
+
     }
 
     public function login(Request $request){
@@ -78,4 +72,12 @@ class AuthController extends Controller
             'message'=> "User logged out successfully"
         ], 200);
     }
+
+    // public function show(User $user)
+    // {
+    //     return response()->json([
+    //         'status' => true,
+    //         'data' => $user
+    //     ], 200);
+    // }
 }
